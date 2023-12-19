@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
 
-    private static final String tabla_usuario="CREATE TABLE usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, usuario VARCHAR(35), contraseña VARCHAR(35))";
+
+    private static final String tabla_usuario="CREATE TABLE usuario(id INTEGER PRIMARY KEY AUTOINCREMENT, usuario_nombre VARCHAR(35), contraseña VARCHAR(35))";
     private static final String DB_NAME = "app_planifica.db";
 
     private static final int DB_VERSION =1;
@@ -22,6 +23,13 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("drop table if exists usuario");
+    }
 
+    public void agregarDatos(SQLiteDatabase db, String consulta){
+        db = this.getWritableDatabase();
+        if (db!=null){
+            db.execSQL(consulta);
+        }
     }
 }

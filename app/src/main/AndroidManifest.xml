@@ -13,7 +13,13 @@
         android:theme="@style/Theme.Plans_App"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".DatosRegistrarse_App"
+            android:exported="false" />
+        <activity
+            android:name=".DatosSesion_App"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen_App"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
