@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877650695323",
+    "project_id": "plansapp-3bb07",
+    "storage_bucket": "plansapp-3bb07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877650695323:android:a740f9d85c1a550898e23e",
+        "android_client_info": {
+          "package_name": "com.cifpceuta.plans_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoOeCvbRKdDa2EVPjI9TMzYt-iKMtllWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
