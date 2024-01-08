@@ -1,5 +1,6 @@
 package com.cifpceuta.plans_app;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -26,10 +27,11 @@ public class MyOpenHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists usuario");
     }
 
-    public void agregarDatos(SQLiteDatabase db, String consulta){
-        db = this.getWritableDatabase();
-        if (db!=null){
-            db.execSQL(consulta);
+    public long agregarDatos(ContentValues cv){
+        SQLiteDatabase db = this.getWritableDatabase();
+        if (db != null){
+            long id = db.insert("usuario",null,cv);
         }
+        return 1;
     }
 }
