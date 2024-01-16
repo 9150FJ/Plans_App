@@ -1,76 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
     tools:context=".DatosSesion_App">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Registrar Usuario"
+        app:titleTextColor="@color/white"
+        android:theme="?attr/actionBarTheme"
+        />
+
+
+<LinearLayout
+    android:layout_margin="30dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
 
     <TextView
-        android:id="@+id/textViewUsuario"
+        android:id="@+id/tvNombre"
+        android:text="Nombre"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="15dp"
+
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+
+    <EditText
+
+        android:id="@+id/etNombre"
+        android:hint="Nombre"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_height="wrap_content">
+    </EditText>
+
+
+    <TextView
+        android:layout_marginBottom="15dp"
+
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="248dp"
-        android:text="Usuario"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toTopOf="@+id/textviewContraseña"
-        app:layout_constraintEnd_toStartOf="@+id/editTextContraseñaRegistrarse"
-        app:layout_constraintHorizontal_bias="0.185"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:text="Correo electrónico"
+        android:textSize="18sp" />
+    <EditText
+        android:layout_marginBottom="15dp"
+
+        android:id="@+id/etEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Correo electrónico"
+        android:inputType="text" />
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
 
     <TextView
+        android:id="@+id/tevGrupo"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grupo"/>
+
+
+    <Spinner
+        android:layout_marginBottom="15dp"
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+    <TextView
+        android:layout_marginBottom="15dp"
+
+        android:id="@+id/tvTurno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turno"/>
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbMañana"
+            android:text="Mañana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/rbTarde"
+            android:text="Tarde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+    </LinearLayout>
+</LinearLayout>
+
+    <TextView
+        android:layout_marginBottom="15dp"
+
+        android:id="@+id/tvGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+
+
+    <TextView
+        android:layout_marginBottom="15dp"
+
         android:id="@+id/textviewContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="396dp"
         android:text="Contraseña"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editTextContraseñaRegistrarse"
-        app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="18dp" />
 
-    <Button
-        android:id="@+id/botonRegistrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:text="Registrarse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewContraseña"
-        app:layout_constraintVertical_bias="0.0" />
+
 
     <EditText
-        android:id="@+id/editTextUsuarioRegistrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
-        android:ems="10"
-        android:hint="..."
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextContraseñaRegistrarse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.598"
-        app:layout_constraintStart_toEndOf="@+id/textViewUsuario"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_marginBottom="15dp"
 
-    <EditText
         android:id="@+id/editTextContraseñaRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="148dp"
         android:ems="10"
-        android:hint="..."
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/botonRegistrarse"
-        app:layout_constraintEnd_toEndOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:hint="Contraseña"
+        android:inputType="text" />
+
+
+
+    <Button
+        android:layout_marginBottom="15dp"
+
+        android:id="@+id/botonRegistrarse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarse" />
+
+
+</LinearLayout>
+
+
+
+
+
+</LinearLayout>

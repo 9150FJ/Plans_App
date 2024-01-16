@@ -8,12 +8,12 @@
 
 
     <TextView
-        android:id="@+id/textViewUsuario"
+        android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="248dp"
-        android:text="Usuario"
+        android:text="Email:"
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/textviewContraseña"
         app:layout_constraintEnd_toStartOf="@+id/editTextContraseña"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/editTextUsuario"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="236dp"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/editTextContraseña"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.598"
-        app:layout_constraintStart_toEndOf="@+id/textViewUsuario"
+        app:layout_constraintStart_toEndOf="@+id/textViewEmail"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 

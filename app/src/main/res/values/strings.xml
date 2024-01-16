@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Plans_App</string>
+    <string name="nav_open">Abrir</string>
+    <string name="nav_close">Cerrar</string>
 </resources>
