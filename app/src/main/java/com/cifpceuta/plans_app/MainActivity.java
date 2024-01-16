@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MyOpenHelper dbHelper = new MyOpenHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        //MyOpenHelper dbHelper = new MyOpenHelper(this);
+        //SQLiteDatabase db = dbHelper.getWritableDatabase();
         botonRegistrar=(Button) findViewById(R.id.registrar);
         botonIniciarSesion=(Button) findViewById(R.id.iniciarSesion);
         botonRegistrar.setOnClickListener(new View.OnClickListener() {

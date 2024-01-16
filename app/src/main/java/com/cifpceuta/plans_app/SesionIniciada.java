@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,9 +32,13 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_sesion_iniciada);
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         }
 
@@ -51,6 +57,7 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
             // Acción para la opción 2
             // Puedes realizar una acción diferente aquí
             // Por ejemplo, iniciar una nueva actividad
+            Toast.makeText(this, "Boton", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, MainActivity.class));
         }
 
