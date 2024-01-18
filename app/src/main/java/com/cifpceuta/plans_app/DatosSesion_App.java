@@ -57,6 +57,7 @@ public class DatosSesion_App extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCustomToken:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
                             updateUI(SesionIniciada.class);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -74,7 +75,7 @@ public class DatosSesion_App extends AppCompatActivity {
         Intent i =  new Intent(this,a);
         FirebaseUser currentUser = mAuth.getCurrentUser();
         i.putExtra("email",currentUser.getEmail());
-
+        //i.putExtra("turno",)
         startActivity(i);
     }
 

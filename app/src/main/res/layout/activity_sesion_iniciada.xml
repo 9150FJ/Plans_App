@@ -21,6 +21,11 @@ android:orientation="vertical">
     android:layout_height="?attr/actionBarSize" />
 
 </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragPerfilEst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 
 <com.google.android.material.navigation.NavigationView
