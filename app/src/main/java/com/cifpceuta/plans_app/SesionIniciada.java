@@ -126,7 +126,12 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
             startActivity(new Intent(this, MainActivity.class));
         }
         else if (itemId == R.id.plan_practica){
+            PlanificarPracticaFragment planificarPracticaFragment = PlanificarPracticaFragment.newInstance();
 
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragPerfilEst, planificarPracticaFragment)
+                    .commit();
         }
         else if (itemId == R.id.plan_exam){
 

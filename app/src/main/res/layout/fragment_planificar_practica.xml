@@ -62,16 +62,11 @@
 
         <Spinner
             android:layout_marginBottom="25dp"
-
+            android:id="@+id/spinnerGrupoFragmentPlanificarPractica"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
-
-
-
-
 
 
 
@@ -105,7 +100,7 @@
 
             <Spinner
                 android:layout_marginBottom="25dp"
-
+                android:id="@+id/spinnerModuloFragmentPlanificarPractica"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -114,6 +109,9 @@
         </LinearLayout>
 
         <EditText
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:height="100dp"
             android:layout_marginBottom="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
