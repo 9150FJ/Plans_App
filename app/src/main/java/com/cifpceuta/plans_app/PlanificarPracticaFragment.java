@@ -142,7 +142,10 @@ public class PlanificarPracticaFragment extends Fragment {
                     p.setFechaInicio(fechaInicio.getText().toString());
                     p.setFechaFinal(fechaFin.getText().toString());
                     p.setDescripcion(tvDescripcion.getText().toString());
-                    //registrarPracticaTabla(); //añadiruser Id y planificarPractica
+
+                    String userID = mAuth.getCurrentUser().getUid();
+
+                    registrarPracticaTabla(userID,p); //añadiruser Id y planificarPractica
 
 
 
