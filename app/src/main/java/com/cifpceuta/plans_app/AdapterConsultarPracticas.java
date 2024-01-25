@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -25,6 +26,10 @@ public class AdapterConsultarPracticas extends RecyclerView.Adapter<AdapterConsu
     int orden=0;
 
     public AdapterConsultarPracticas(){}
+
+    public AdapterConsultarPracticas(ArrayList<PlanificarPractica> practicas){
+        this.practicas=practicas;
+    }
 
     @NonNull
     @Override
@@ -42,9 +47,7 @@ public class AdapterConsultarPracticas extends RecyclerView.Adapter<AdapterConsu
         return practicas.size();
     }
 
-    public AdapterConsultarPracticas(ArrayList<PlanificarPractica> practicas){
-        this.practicas=practicas;
-    }
+
 
 
 

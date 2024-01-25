@@ -25,11 +25,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class SesionIniciada extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -39,6 +45,8 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
 
     String nombre,email2,grupo,turno;
 
+    ArrayList<PlanificarPractica> listaPracticas = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +54,7 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         mAuth=FirebaseAuth.getInstance();
+        db=FirebaseFirestore.getInstance();
         String userID = mAuth.getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Estudiantes").document(userID);
@@ -117,8 +126,36 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
                     .commit();
         }
         else if (itemId == R.id.consultarPracticas){
-            ConsultarPracticasFragment consultarPracticasFragment = ConsultarPracticasFragment.newInstance("arg1","arg2");
 
+            System.out.println(listaPracticas);
+            for (int i=0;i<listaPracticas.size();i++){
+                Log.i("LIsta", listaPracticas.get(i).toString());
+            }
+            db.collection("1DAM").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    QuerySnapshot query = task.getResult();
+                    List<DocumentSnapshot> lista = query.getDocuments();
+                    for (int i=0;i<lista.size();i++){
+                        System.out.println();
+                        PlanificarPractica p = new PlanificarPractica();
+                        p.setGrupo(lista.get(i).get("grupo").toString());
+                        p.setModulo(lista.get(i).get("modulo").toString());
+                        p.setTitulo(lista.get(i).get("titulo").toString());
+                        p.setDescripcion(lista.get(i).get("descripcion").toString());
+                        p.setUserID(lista.get(i).get("userid").toString());
+                        p.setFechaInicio(lista.get(i).get("fechaInicio").toString());
+                        p.setFechaFinal(lista.get(i).get("fechaFin").toString());
+                        listaPracticas.add(p);
+                        Log.i("contador",i+" ");
+                        //Log.i("Lista",lista.toString());
+                        Log.i("Lista",listaPracticas.get(i).toString());
+                    }
+                }
+            });
+
+
+            ConsultarPracticasFragment consultarPracticasFragment = ConsultarPracticasFragment.newInstance(listaPracticas);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragPerfilEst, consultarPracticasFragment)
                     .commit();

@@ -3,10 +3,15 @@ package com.cifpceuta.plans_app;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,15 +22,15 @@ public class ConsultarPracticasFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
 
+    ArrayList<PlanificarPractica> lista;
+    RecyclerView recyclerView;
+
+    AdapterConsultarPracticas adapter;
 
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ConsultarPracticasFragment() {
         // Required empty public constructor
@@ -35,16 +40,14 @@ public class ConsultarPracticasFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment ConsultarPracticasFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ConsultarPracticasFragment newInstance(String param1, String param2) {
+    public static ConsultarPracticasFragment newInstance(ArrayList<PlanificarPractica> lista) {
         ConsultarPracticasFragment fragment = new ConsultarPracticasFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("lista", lista);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,8 +56,7 @@ public class ConsultarPracticasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            lista = (ArrayList<PlanificarPractica>) getArguments().getSerializable("lista");
         }
     }
 
@@ -62,6 +64,32 @@ public class ConsultarPracticasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consultar_practicas, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_consultar_practicas, container, false);
+        recyclerView=(RecyclerView) rootView.findViewById(R.id.recyclerView);
+        System.out.println(lista.size());
+        //System.out.println(lista.get(1).toString());
+        adapter=new AdapterConsultarPracticas(lista);
+        // Obtener el correo electrónico de los argumentos
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+
+        if (getArguments() != null) {
+
+        }
+
+        // Vincular el correo electrónico al TextView en el layout
+        /*tvNombre = rootView.findViewById(R.id.tvNombreMiCuenta);
+        tvCorreo = rootView.findViewById(R.id.tvEmailMiCuenta);
+        tvTurno = rootView.findViewById(R.id.tvTurnoMiCuenta);
+        tvGrupo = rootView.findViewById(R.id.tvGrupoMiCuenta);
+
+        tvNombre.setText(nombre);
+        tvCorreo.setText(email);
+        tvTurno.setText(turno);
+        tvGrupo.setText(grupo);*/
+
+        // Inflate the layout for this fragment
+        return rootView;
     }
 }

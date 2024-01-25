@@ -219,19 +219,6 @@ public class PlanificarPracticaFragment extends Fragment {
 
 
 
-        db.collection("1DAM").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                QuerySnapshot query = task.getResult();
-                List<DocumentSnapshot> lista = query.getDocuments();
-                for (int i=0;i<lista.size();i++){
-                    System.out.println();
-                    Log.i("Info:",lista.get(i).get("descripcion").toString());
-                }
-
-            }
-        });
-
     }
 
 

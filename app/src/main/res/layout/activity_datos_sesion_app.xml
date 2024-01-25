@@ -52,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="236dp"
+        android:text="prueba@gmail.com"
         android:ems="10"
         android:hint="..."
         android:inputType="text"
@@ -64,6 +65,7 @@
 
     <EditText
         android:id="@+id/editTextContraseña"
+        android:text="123456"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="44dp"

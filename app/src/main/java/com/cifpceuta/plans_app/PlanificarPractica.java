@@ -1,6 +1,8 @@
 package com.cifpceuta.plans_app;
 
-public class PlanificarPractica {
+import java.io.Serializable;
+
+public class PlanificarPractica implements Serializable {
 
     private String titulo;
     private String fechaInicio;
