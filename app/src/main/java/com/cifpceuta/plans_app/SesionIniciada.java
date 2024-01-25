@@ -112,12 +112,19 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
             // Acción para la opción 1
             // Puedes abrir un nuevo fragmento, iniciar una nueva actividad, etc.
             MiCuentaFragment miCuentaFragment = MiCuentaFragment.newInstance(nombre,email2,turno,grupo);
-
-
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragPerfilEst, miCuentaFragment)
                     .commit();
         }
+        else if (itemId == R.id.consultarPracticas){
+            ConsultarPracticasFragment consultarPracticasFragment = ConsultarPracticasFragment.newInstance("arg1","arg2");
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragPerfilEst, consultarPracticasFragment)
+                    .commit();
+        }
+
+
         else if (itemId == R.id.nav_logout) {
             // Acción para la opción 2
             // Puedes realizar una acción diferente aquí

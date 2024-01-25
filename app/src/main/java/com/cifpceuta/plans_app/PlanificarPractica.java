@@ -9,10 +9,19 @@ public class PlanificarPractica {
     private String modulo;
     private String descripcion;
 
+    private String userID;
+
     public PlanificarPractica() {
     }
 
 
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public String getTitulo() {
         return titulo;
@@ -71,6 +80,7 @@ public class PlanificarPractica {
                 ", grupo='" + grupo + '\'' +
                 ", modulo='" + modulo + '\'' +
                 ", descripcion='" + descripcion + '\'' +
+                ", userID='" + userID + '\'' +
                 '}';
     }
 }

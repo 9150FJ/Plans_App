@@ -1,6 +1,7 @@
 package com.cifpceuta.plans_app;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,14 +16,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -142,10 +150,9 @@ public class PlanificarPracticaFragment extends Fragment {
                     p.setFechaInicio(fechaInicio.getText().toString());
                     p.setFechaFinal(fechaFin.getText().toString());
                     p.setDescripcion(tvDescripcion.getText().toString());
-
                     String userID = mAuth.getCurrentUser().getUid();
-
-                    registrarPracticaTabla(userID,p); //añadiruser Id y planificarPractica
+                    p.setUserID(userID);
+                    registrarPracticaTabla(p); //añadiruser Id y planificarPractica
 
 
 
@@ -159,7 +166,7 @@ public class PlanificarPracticaFragment extends Fragment {
     }
 
 
-    public void registrarPracticaTabla(String userID, PlanificarPractica p){
+    public void registrarPracticaTabla(PlanificarPractica p){
         Map<String, Object> lista = new HashMap<>();
         lista.put("titulo",p.getTitulo());
         lista.put("fechaInicio",p.getFechaInicio());
@@ -167,21 +174,68 @@ public class PlanificarPracticaFragment extends Fragment {
         lista.put("grupo",p.getGrupo());
         lista.put("modulo",p.getModulo());
         lista.put("descripcion",p.getDescripcion());
+        lista.put("userid",p.getUserID());
 
-        db.collection("Practica").document(userID).set(lista).addOnSuccessListener(new OnSuccessListener<Void>() {
+        //db.collection("cities")
+        //        .add(data)
+        //         .addOnSuccessListener(new OnSuccessListener<DocumentReference>()
+        if (p.getGrupo().equalsIgnoreCase("1º DAM")){
+
+            db.collection("1DAM").add(lista).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    //Intent intent = new Intent(DatosRegistrarse_App.this, DatosSesion_App.class);
+                    //Intent i = new Intent(PlanificarPracticaFragment.this,MiCuentaFragment.class);
+                    //startActivity(i);
+                    vaciarCampos();
+                    Toast.makeText(getContext(), "Se ha registrado correctamente la práctica", Toast.LENGTH_SHORT).show();
+                    Log.d("Registro practica: 1dam","Aceptado");
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w("Registro practica 1dam","Fallado",e);
+                }
+            });;
+
+
+        }else if (p.getGrupo().equalsIgnoreCase("2º DAM")){
+            db.collection("2DAM").add(lista).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Log.d("Registro practica 2dam:","Aceptado");
+                    Toast.makeText(getContext(), "Se ha registrado correctamente la práctica", Toast.LENGTH_SHORT).show();
+                    vaciarCampos();
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w("Registro practica 2dam","Fallado",e);
+                }
+            });;
+        }
+
+
+
+        db.collection("1DAM").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(Void unused) {
-                Log.d("Registro practica:","Aceptado");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w("Registro practica","Fallado",e);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                QuerySnapshot query = task.getResult();
+                List<DocumentSnapshot> lista = query.getDocuments();
+                for (int i=0;i<lista.size();i++){
+                    System.out.println();
+                    Log.i("Info:",lista.get(i).get("descripcion").toString());
+                }
+
             }
         });
 
-
     }
+
+
+
 
 
     public boolean comprobarDatos(){
@@ -189,6 +243,13 @@ public class PlanificarPracticaFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    public void vaciarCampos(){
+        tituloPractica.setText("");
+        fechaInicio.setText("");
+        fechaFin.setText("");
+        tvDescripcion.setText("");
     }
 
 

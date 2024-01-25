@@ -9,6 +9,12 @@
         android:title="Mi cuenta" />
 
     <item
+        android:id="@+id/consultarPracticas"
+        android:title="Consultar prácticas"
+    />
+
+
+    <item
         android:id="@+id/plan_practica"
         android:title="Planificar práctica" />
 
