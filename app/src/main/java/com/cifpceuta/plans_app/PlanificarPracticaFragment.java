@@ -239,12 +239,7 @@ public class PlanificarPracticaFragment extends Fragment {
     }
 
 
-    public int restarFecha(String fecha,String fechaFin){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fechaInicio = LocalDate.parse(fecha, formatter);
-        LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
-        return fechaInicio.until(fechaFinal).getDays();
-    }
+
 
 
     public boolean comprobarFecha(String fecha, String fechaFin){

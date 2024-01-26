@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
     String email;
 
     String nombre,email2,grupo,turno;
+    String grp;
 
     ArrayList<PlanificarPractica> listaPracticas = new ArrayList<>();
 
@@ -126,11 +128,36 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
         }
         else if (itemId == R.id.consultarPracticas){
 
-            System.out.println(listaPracticas);
-            for (int i=0;i<listaPracticas.size();i++){
-                Log.i("LIsta", listaPracticas.get(i).toString());
+
+            /*db.collection("Estudiantes").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    DocumentSnapshot query = task.getResult();
+                    grp=query.get("grupo").toString();
+                    if (grp.equalsIgnoreCase("2º DAM")){
+                        grupo="2DAM";
+                    }else{
+                        grupo="1DAM";
+                    }
+
+                }
+            });*/
+            /*
+            String conversion;
+            if (grupo.equalsIgnoreCase("2º DAM")){
+                conversion="2DAM";
+            }else{
+                conversion="1DAM";
+            }*/
+            System.out.println("GRUPO"+grupo);
+            String usuarioGrupo="";
+            if (grupo.equalsIgnoreCase("2º DAM")){
+                usuarioGrupo="2DAM";
+            }else{
+                usuarioGrupo="1DAM";
             }
-            db.collection("1DAM").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+            db.collection(usuarioGrupo).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     QuerySnapshot query = task.getResult();
@@ -159,10 +186,14 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
 
 
 
-        }
+        } else if (itemId == R.id.consultarPracticasPorSemanas) {
+            ConsultarPracticasPorSemanas consultarPracticasPorSemanas = ConsultarPracticasPorSemanas.newInstance("arg","arg2");
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragPerfilEst, consultarPracticasPorSemanas)
+                    .commit();
 
 
-        else if (itemId == R.id.nav_logout) {
+        } else if (itemId == R.id.nav_logout) {
             // Acción para la opción 2
             // Puedes realizar una acción diferente aquí
             // Por ejemplo, iniciar una nueva actividad

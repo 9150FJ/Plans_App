@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -116,8 +117,12 @@ public class AdapterConsultarPracticas extends RecyclerView.Adapter<AdapterConsu
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate fechaInicio = LocalDate.parse(fecha, formatter);
             LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
+            fechaInicio.getDayOfWeek();
+            //Period p = fechaInicio.until(fechaFinal).getDays();
             return fechaInicio.until(fechaFinal).getDays();
         }
+
+
     }
 
 

@@ -32,7 +32,6 @@ public class ConsultarPracticasFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    LinearLayout ly;
     ArrayList<PlanificarPractica> lista;
     RecyclerView recyclerView;
 
@@ -81,7 +80,6 @@ public class ConsultarPracticasFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_consultar_practicas, container, false);
 
         recyclerView=(RecyclerView) rootView.findViewById(R.id.recyclerView);
-        ly=rootView.findViewById(R.id.linearGeneral);
         //ly.setBackgroundColor(Color.rgb(255, 130, 58));
 
         //System.out.println(lista.size());
@@ -104,6 +102,9 @@ public class ConsultarPracticasFragment extends Fragment {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaInicio = LocalDate.parse(fecha, formatter);
         LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
+
+
+
         return fechaInicio.until(fechaFinal).getDays();
     }
 }
