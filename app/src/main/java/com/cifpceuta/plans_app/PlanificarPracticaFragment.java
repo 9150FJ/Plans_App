@@ -28,6 +28,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -153,9 +157,8 @@ public class PlanificarPracticaFragment extends Fragment {
                     String userID = mAuth.getCurrentUser().getUid();
                     p.setUserID(userID);
                     registrarPracticaTabla(p); //añadiruser Id y planificarPractica
-
-
-
+                }else {
+                    Toast.makeText(rootView.getContext(), "Algo ha salido mal...", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -229,8 +232,70 @@ public class PlanificarPracticaFragment extends Fragment {
         if (tituloPractica.getText().toString().isEmpty() || fechaInicio.getText().toString().isEmpty() || fechaFin.getText().toString().isEmpty()){
             return false;
         }
-        return true;
+        if (comprobarFecha(fechaInicio.getText().toString(),fechaFin.getText().toString())){
+            return true;
+        }
+        return false;
     }
+
+
+    public int restarFecha(String fecha,String fechaFin){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaInicio = LocalDate.parse(fecha, formatter);
+        LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
+        return fechaInicio.until(fechaFinal).getDays();
+    }
+
+
+    public boolean comprobarFecha(String fecha, String fechaFin){
+        System.out.println(fecha.length());
+        if (fecha.length()==10){
+            char[] c = fecha.toCharArray();
+            if  (c[5]=='/'&&c[2]=='/'&&Character.isDigit(c[0])&&Character.isDigit(c[1])&&Character.isDigit(c[4])&&Character.isDigit(c[6])&&Character.isDigit(c[7])&&Character.isDigit(c[8])&&Character.isDigit(c[9])){
+                String[] n=fecha.split("/");
+                int par1=Integer.parseInt(n[0]);
+                int par2=Integer.parseInt(n[1]);
+                int par3=Integer.parseInt(n[2]);
+                if (par1<0||par1>31){
+                    return false;
+                }
+                if (par2<0||par2>12){
+                    return false;
+                }
+                if (par3<LocalDateTime.now().getYear()){
+                    return false;
+                }
+            }
+        }
+        if (fechaFin.length()==10){
+            char[] d = fechaFin.toCharArray();
+            if  (d[5]=='/'&&d[2]=='/'&&Character.isDigit(d[0])&&Character.isDigit(d[1])&&Character.isDigit(d[4])&&Character.isDigit(d[6])&&Character.isDigit(d[7])&&Character.isDigit(d[8])&&Character.isDigit(d[9])){
+                String[] z=fechaFin.split("/");
+                int par1=Integer.parseInt(z[0]);
+                int par2=Integer.parseInt(z[1]);
+                int par3=Integer.parseInt(z[2]);
+                if (par1<0||par1>31){
+                    return false;
+                }
+                if (par2<0||par2>12){
+                    return false;
+                }
+                if (par3<LocalDateTime.now().getYear()){
+                    return false;
+                }
+
+            }
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaInicio = LocalDate.parse(fecha, formatter);
+        LocalDate fechaFinal = LocalDate.parse(fechaFin, formatter);
+        if (fechaInicio.isBefore(fechaFinal)) {
+            return true;
+        }
+        return false;
+    }
+
+
 
     public void vaciarCampos(){
         tituloPractica.setText("");

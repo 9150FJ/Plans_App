@@ -92,7 +92,6 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
         Intent i = this.getIntent();
         if (i!=null){
             email=i.getStringExtra("email");
-            //textViewEmail.setText(email);
         }
 
 
@@ -150,15 +149,16 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
                         Log.i("contador",i+" ");
                         //Log.i("Lista",lista.toString());
                         Log.i("Lista",listaPracticas.get(i).toString());
+                        ConsultarPracticasFragment consultarPracticasFragment = ConsultarPracticasFragment.newInstance(listaPracticas);
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.fragPerfilEst, consultarPracticasFragment)
+                                .commit();
                     }
                 }
             });
 
 
-            ConsultarPracticasFragment consultarPracticasFragment = ConsultarPracticasFragment.newInstance(listaPracticas);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragPerfilEst, consultarPracticasFragment)
-                    .commit();
+
         }
 
 
