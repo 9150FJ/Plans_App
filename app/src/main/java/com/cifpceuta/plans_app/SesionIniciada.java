@@ -162,6 +162,7 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     QuerySnapshot query = task.getResult();
                     List<DocumentSnapshot> lista = query.getDocuments();
+                    listaPracticas.clear();
                     for (int i=0;i<lista.size();i++){
                         System.out.println();
                         PlanificarPractica p = new PlanificarPractica();
@@ -187,7 +188,14 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
 
 
         } else if (itemId == R.id.consultarPracticasPorSemanas) {
-            ConsultarPracticasPorSemanas consultarPracticasPorSemanas = ConsultarPracticasPorSemanas.newInstance("arg","arg2");
+            String usuarioGrupo="";
+            if (grupo.equalsIgnoreCase("2º DAM")){
+                usuarioGrupo="2DAM";
+            }else{
+                usuarioGrupo="1DAM";
+            }
+
+            ConsultarPracticasPorSemanas consultarPracticasPorSemanas = ConsultarPracticasPorSemanas.newInstance(usuarioGrupo);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragPerfilEst, consultarPracticasPorSemanas)
                     .commit();

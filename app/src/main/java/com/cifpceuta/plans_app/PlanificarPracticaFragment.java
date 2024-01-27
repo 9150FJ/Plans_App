@@ -1,10 +1,16 @@
 package com.cifpceuta.plans_app;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -47,6 +53,7 @@ public class PlanificarPracticaFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private Button guardar;
+    private int contadorNotificacion=0;
     private TextView tituloPractica,fechaInicio,fechaFin,tvDescripcion;
 
     private FirebaseAuth mAuth;
@@ -142,6 +149,16 @@ public class PlanificarPracticaFragment extends Fragment {
         fechaInicio=rootView.findViewById(R.id.tvFechaInicioFragmentPlanificarPractica);
         fechaFin=rootView.findViewById(R.id.tvFechaFinalFragmentPlanificarPractica);
         tvDescripcion=rootView.findViewById(R.id.tvDescripcionFragmentPlanificarPractica);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaAhoraString=LocalDate.now().format(formatter);
+
+        String fechaFinString=LocalDate.now().plusYears(1).format(formatter);
+
+        fechaInicio.setHint(fechaAhoraString);
+        fechaFin.setHint(fechaFinString);
+        createNotificacionChannel();
+        notificacion();
+
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +207,7 @@ public class PlanificarPracticaFragment extends Fragment {
                     //Intent intent = new Intent(DatosRegistrarse_App.this, DatosSesion_App.class);
                     //Intent i = new Intent(PlanificarPracticaFragment.this,MiCuentaFragment.class);
                     //startActivity(i);
+                    notificacion();
                     vaciarCampos();
                     Toast.makeText(getContext(), "Se ha registrado correctamente la práctica", Toast.LENGTH_SHORT).show();
                     Log.d("Registro practica: 1dam","Aceptado");
@@ -210,6 +228,8 @@ public class PlanificarPracticaFragment extends Fragment {
                     Log.d("Registro practica 2dam:","Aceptado");
                     Toast.makeText(getContext(), "Se ha registrado correctamente la práctica", Toast.LENGTH_SHORT).show();
                     vaciarCampos();
+                    notificacion();
+
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -225,7 +245,55 @@ public class PlanificarPracticaFragment extends Fragment {
     }
 
 
+    @SuppressLint({"MissingPermission", "NotificationPermission"})
+    public void notificacion(){
 
+
+        /*int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        String name="canal";
+        String description="canal";
+        NotificationChannel channel = new NotificationChannel("canal", name, importance);
+        channel.setDescription(description);
+        // Register the channel with the system; you can't change the importance
+        // or other notification behaviors after this
+        NotificationManager notificationManager = this.getContext().getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+
+
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this.getContext(), "canal")
+                .setSmallIcon(R.drawable.notificacion)
+                .setContentTitle("My notification")
+                .setContentText("Hello World!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        notificationManager.notify(contadorNotificacion, builder.build());*/
+
+
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(),"canal");
+        builder.setSmallIcon(R.drawable.notificacion);
+        builder.setContentTitle("Se ha registrado una nueva práctica");
+        builder.setContentText("Se ha registrado una nueva práctica");
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(getContext());
+        notificationManagerCompat.notify(0,builder.build());
+
+
+    }
+
+
+
+
+    private void createNotificacionChannel(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "canal";
+            NotificationChannel notificationChannel = new NotificationChannel("canal",name,NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 
 
     public boolean comprobarDatos(){

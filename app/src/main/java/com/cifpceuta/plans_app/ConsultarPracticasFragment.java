@@ -78,7 +78,6 @@ public class ConsultarPracticasFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_consultar_practicas, container, false);
-
         recyclerView=(RecyclerView) rootView.findViewById(R.id.recyclerView);
         //ly.setBackgroundColor(Color.rgb(255, 130, 58));
 

@@ -1,6 +1,8 @@
 package com.cifpceuta.plans_app;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class PlanificarPractica implements Serializable {
 
@@ -73,6 +75,7 @@ public class PlanificarPractica implements Serializable {
         this.descripcion = descripcion;
     }
 
+
     @Override
     public String toString() {
         return "PlanificarPractica{" +
@@ -84,5 +87,13 @@ public class PlanificarPractica implements Serializable {
                 ", descripcion='" + descripcion + '\'' +
                 ", userID='" + userID + '\'' +
                 '}';
+    }
+
+    public int restarFecha(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaInicio = LocalDate.parse(this.fechaInicio, formatter);
+        LocalDate fechaFinal = LocalDate.parse(this.fechaFinal, formatter);
+        fechaInicio.getDayOfWeek();
+        return fechaInicio.until(fechaFinal).getDays();
     }
 }
