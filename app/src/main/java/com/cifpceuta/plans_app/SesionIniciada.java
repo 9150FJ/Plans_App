@@ -215,7 +215,18 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragPerfilEst, planificarPracticaFragment)
                     .commit();
+        }else if (itemId == R.id.planificar_tareas){
+
+            PlanificarTareasFragment planificarTareasFragment = PlanificarTareasFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragPerfilEst, planificarTareasFragment)
+                    .commit();
         }
+
+
+
+
+
         else if (itemId == R.id.plan_exam){
 
         }

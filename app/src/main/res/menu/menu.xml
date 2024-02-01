@@ -19,7 +19,9 @@
         android:id="@+id/consultarPracticasPorSemanas"
         android:title="Consultar prácticas por semanas"
         />
-
+    <item
+        android:id="@+id/planificar_tareas"
+        android:title="Planificar tareas" />
 
 
     <item
