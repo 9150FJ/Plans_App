@@ -91,7 +91,7 @@ public class AdapterConsultarPracticas extends RecyclerView.Adapter<AdapterConsu
             ly = itemView.findViewById(R.id.linearGeneral);
 
 
-            cardView=itemView.findViewById(R.id.cardViewGeneral);
+            cardView=itemView.findViewById(R.id.x);
             grupo=(TextView) itemView.findViewById(R.id.consultarTareasFragmentGrupo);
             modulo=(TextView) itemView.findViewById(R.id.consultarTareasFragmentModulo);
             titulo=(TextView) itemView.findViewById(R.id.consultarTareasFragmentTitulo);

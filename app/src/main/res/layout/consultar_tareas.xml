@@ -4,7 +4,7 @@
     android:layout_marginLeft="30dp"
     android:layout_marginBottom="30dp"
     android:layout_marginRight="30dp"
-    android:id="@+id/cardViewGeneralTarea"
+    android:id="@+id/x"
     android:background="@color/red"
     android:layout_height="wrap_content">
 

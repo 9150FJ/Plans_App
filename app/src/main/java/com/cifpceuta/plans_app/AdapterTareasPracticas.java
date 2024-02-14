@@ -19,14 +19,12 @@ import java.util.ArrayList;
 public class AdapterTareasPracticas extends RecyclerView.Adapter<AdapterTareasPracticas.ViewHolder> {
 
 
-    ArrayList<PlanificarPractica> practicas;
 
     ArrayList<Tarea> tareas;
 
 
     int orden=0;
 
-    public AdapterTareasPracticas(){}
 
     public AdapterTareasPracticas(ArrayList<Tarea> tareas){
         this.tareas=tareas;
@@ -35,7 +33,7 @@ public class AdapterTareasPracticas extends RecyclerView.Adapter<AdapterTareasPr
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.consultar_tareas,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ver_tareas,parent,false);
         return new AdapterTareasPracticas.ViewHolder(v);    }
 
     @Override
@@ -62,18 +60,30 @@ public class AdapterTareasPracticas extends RecyclerView.Adapter<AdapterTareasPr
         public ViewHolder(@NonNull View itemView){
             super(itemView);
             //ly = itemView.findViewById(R.id.linearGeneral);
-            cardView=itemView.findViewById(R.id.cardViewGeneralTarea);
+            cardView=itemView.findViewById(R.id.cardViewGeneralExamen);
 
             titulo=itemView.findViewById(R.id.tareafragmentTitulo);
-            fechaInicio=itemView.findViewById(R.id.tareafragmentfecha);
             curso=itemView.findViewById(R.id.tareafragmentCurso);
+
+            fechaInicio=itemView.findViewById(R.id.tareafragmentfecha);
 
 
         }
         void bindData(Tarea p){
-            fechaInicio.setText(p.getFechaInicio());
-            curso.setText(p.getCurso());
-            titulo.setText(p.getTitulo());
+            System.out.println(p.getTitulo());
+            System.out.println(p.getCurso());
+            System.out.println(p.getFechaInicio());
+            if (fechaInicio != null) {
+                fechaInicio.setText(p.getFechaInicio());
+            }
+
+            if (curso != null) {
+                curso.setText(p.getCurso());
+            }
+
+            if (titulo != null) {
+                titulo.setText(p.getTitulo());
+            }
 
         }
 
