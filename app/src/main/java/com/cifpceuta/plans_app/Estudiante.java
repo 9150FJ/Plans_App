@@ -1,11 +1,14 @@
 package com.cifpceuta.plans_app;
 
-public class Estudiante {
+import java.io.Serializable;
+
+public class Estudiante implements Serializable {
 
     private String nombre;
     private String email;
     private String grupo;
     private String turno;
+    public Estudiante(){}
 
     public Estudiante(String nombre, String email, String grupo, String turno) {
         this.nombre = nombre;

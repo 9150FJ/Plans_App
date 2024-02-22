@@ -51,8 +51,16 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_sesion_iniciada);
+
+
+
+
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         mAuth=FirebaseAuth.getInstance();
@@ -108,6 +116,17 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragPerfilEst, defaultFragment)
                     .commit();
+        }
+
+
+        if (this.getIntent()!=null){
+            boolean flag = getIntent().getBooleanExtra("flag",false);
+            if (flag){
+                Gestion_Alumnos_Fragment gestionAlumnosFragment = Gestion_Alumnos_Fragment.newInstance();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragPerfilEst, gestionAlumnosFragment)
+                        .commit();
+            }
         }
 
     }
@@ -201,7 +220,20 @@ public class SesionIniciada extends AppCompatActivity implements NavigationView.
                     .commit();
 
 
-        } else if (itemId == R.id.nav_logout) {
+
+
+        } else if(itemId==R.id.gestionAlumnos){
+            Gestion_Alumnos_Fragment gestionAlumnosFragment = Gestion_Alumnos_Fragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragPerfilEst, gestionAlumnosFragment)
+                    .commit();
+
+        }
+
+
+
+
+        else if (itemId == R.id.nav_logout) {
             // Acción para la opción 2
             // Puedes realizar una acción diferente aquí
             // Por ejemplo, iniciar una nueva actividad

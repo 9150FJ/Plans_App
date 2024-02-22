@@ -33,6 +33,11 @@
         android:title="Planificar examen" />
 
     <item
+        android:id="@+id/gestionAlumnos"
+        android:title="Gestion alumnos"
+        />
+
+    <item
         android:id="@+id/nav_settings"
         android:title="Preferencias" />
 
